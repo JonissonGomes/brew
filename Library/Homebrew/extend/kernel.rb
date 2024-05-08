@@ -64,6 +64,7 @@ module Kernel
   def opoo(message)
     Tty.with($stderr) do |stderr|
       stderr.puts Formatter.warning(message, label: "Warning")
+      puts "::warning::#{message}" if ENV["GITHUB_ACTIONS"]
     end
   end
 
@@ -73,6 +74,7 @@ module Kernel
   def onoe(message)
     Tty.with($stderr) do |stderr|
       stderr.puts Formatter.error(message, label: "Error")
+      puts "::error::#{message}" if ENV["GITHUB_ACTIONS"]
     end
   end
 
